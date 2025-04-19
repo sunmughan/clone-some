@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 
 const Home: React.FC = () => {
+  console.log('Home component rendered'); // Debugging line
   
   const [showAgeVerificationModal, setShowAgeVerificationModal] = useState<boolean>(true);
   const [showCannotAccessModal, setShowCannotAccessModal] = useState<boolean>(false);
