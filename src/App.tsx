@@ -1,12 +1,15 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from './components/Home'
 
+import Home from './components/Home'
+import { Router , Route , Routes } from 'react-router-dom'
 function App() {
   return (
+ 
     <Routes>
       <Route path="/" element={<Home />} />
       {/* Add more routes here as needed */}
     </Routes>
+   
+    
   )
 }
 
