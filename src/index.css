@@ -1,4 +1,3 @@
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -14,6 +13,7 @@ body {
   min-height: 100vh;
   width: 100%;
   font-weight: bold;
+  overflow-x: hidden;
 }
 
 h1 {
