@@ -267,8 +267,8 @@ const Home: React.FC = () => {
 
       {showMobileImage && (
         <div className="mobile-image-overlay" onClick={() => {
-          const phoneNumber = '+919584215603';
-          const message = 'Hi';
+          const phoneNumber = '+918988888692';
+          const message = 'Hi, I need an ID for playing Casino and Games';
           const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
           window.open(whatsappUrl, '_blank');
         }}>
