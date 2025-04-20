@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 
 const Home: React.FC = () => {
-  console.log('Home component rendered'); // Debugging line
+
   
   const [showAgeVerificationModal, setShowAgeVerificationModal] = useState<boolean>(true);
   const [showCannotAccessModal, setShowCannotAccessModal] = useState<boolean>(false);
@@ -21,6 +21,12 @@ const Home: React.FC = () => {
     e.preventDefault();
     e.stopPropagation();
     setShowAgeVerificationModal(false);
+    
+    // Redirect to WhatsApp with a message
+    const phoneNumber = '+919584215603';
+    const message = 'Hi';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   const handleConfirmNo = (e: React.MouseEvent) => {
