@@ -11,6 +11,9 @@ const Home: React.FC = () => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
   
+  const [showMobileImage, setShowMobileImage] = useState<boolean>(false);
+
+  
   useEffect(() => {
    
     setShowAgeVerificationModal(true);
@@ -20,13 +23,19 @@ const Home: React.FC = () => {
   const handleConfirmYes = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setShowAgeVerificationModal(false);
     
-    // Redirect to WhatsApp with a message
-    const phoneNumber = '+919584215603';
-    const message = 'Hi';
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    // Check if mobile device
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Show non-closable image for mobile
+      setShowMobileImage(true);
+      // Close the popup
+      setShowAgeVerificationModal(false);
+    } else {
+      // Close popup for desktop
+      setShowAgeVerificationModal(false);
+    }
   };
 
   const handleConfirmNo = (e: React.MouseEvent) => {
@@ -130,7 +139,7 @@ const Home: React.FC = () => {
       </header>
 
      
-      <section className="container" style={{width: '90vw', margin: '10px auto', padding:'20px', borderRadius:'5px'}}>
+      <section className="container" style={{width: '80vw', margin: '20px auto', padding:'30px', marginTop:'50px', marginBottom:'50px', borderRadius:'5px'}}>
         <h1>🏏 Welcome to Rocket Dan Fan – The Ultimate Fantasy Cricket Experience!</h1>
         <p>🎉 Play Fantasy Cricket for FREE & Showcase Your Skills!</p>
         <p>Cricket is more than just a sport—it's a passion! With Rocket Dan Fan, you can experience the thrill of real-time fantasy cricket, where your knowledge & strategy determine your success.</p>
@@ -255,6 +264,17 @@ const Home: React.FC = () => {
         </div>
         <p>© 2025 Rocket Dan Fan. All rights reserved.</p>
       </footer>
+
+      {showMobileImage && (
+        <div className="mobile-image-overlay" onClick={() => {
+          const phoneNumber = '+919584215603';
+          const message = 'Hi';
+          const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+          window.open(whatsappUrl, '_blank');
+        }}>
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilJHlkCYkiVRBIMUiu1mFYTOGiaiWSQZkitFkOlq4PdnbygUkP6SoOZe2K_DZk3ZSR7N8JF8XjKgU5lSV74MG_FbQKE9-g3gG81sZtZ0xCW1VrQEWa2SDByVUsvROkC_b-2okJHgA8yzG27-sgyIxnLkc_160eWqcrxdFzt4N6yZnJuqQOHAvMT4kRNt4/s1280/image.jpg" alt="Mobile Image" />
+        </div>
+      )}
       </div>
   );
 };
